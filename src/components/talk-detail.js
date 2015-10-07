@@ -18,7 +18,17 @@ const styles = StyleSheet.create({
     color: "#0f1726",
     fontSize: 16,
     fontWeight: "bold",
-    padding: 20
+    padding: 20,
+    paddingTop: 5
+  },
+  time: {
+    flex: 0,
+    textAlign: 'center',
+    color: "#1bce7c",
+    fontSize: 14,
+    fontWeight: "bold",
+    padding: 20,
+    paddingBottom: 5
   },
   summary: {
     flex: 1,
@@ -33,7 +43,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 2,
     borderColor: "#1bce7c",
-    marginBottom: 10,
+    margin: 10,
     alignSelf: 'center'
   },
   speaker: {
@@ -74,7 +84,10 @@ class TalkDetail extends React.Component {
           style={styles.company}>
           {this.props.company}
         </Text>
-        <Text style={styles.title}>{this.props.title.toUpperCase()}</Text>
+        <Text style={styles.time}>{this.props.time} </Text>
+        <Text style={styles.title}>
+          {this.props.title.toUpperCase()}
+        </Text>
         <Text style={styles.summary}>{this.props.summary}</Text>
       </ScrollView>
     );

@@ -24,14 +24,8 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     borderWidth: 2,
     borderColor: "#1bce7c",
-    marginBottom: 10
-  },
-  name: {
-    color: "#0f1726",
-    fontSize: 18,
-    fontWeight: "600",
-    margin: 5,
-    textAlign: "center"
+    marginBottom: 10,
+    marginTop: 40
   },
   country: {
     fontSize: 16,
@@ -55,10 +49,6 @@ class Speaker extends React.Component {
           resizeMode="cover"
           source={{uri: this.props.photo}}
           style={styles.image}/>
-        <Text
-          style={styles.name}>
-          {this.props.name}
-        </Text>
         <Text
           style={styles.country}>
           {this.props.country}

@@ -25,13 +25,33 @@ const styles = StyleSheet.create({
     flex: 1
   },
   dayText: {
+    fontSize: 12,
     backgroundColor: "#16a764",
     color: "#0f1726",
     textAlign: 'center',
     padding: 10
   },
   selected: {
-    backgroundColor: "#1bce7c"
+    backgroundColor: "#1bce7c",
+    color: "white"
+  },
+  filter: {
+    textAlign: "center",
+    fontSize: 10,
+    padding: 3,
+    color: "white"
+  },
+  RethinkingRest: {
+    backgroundColor: "#9b59b6"
+  },
+  DataFlow: {
+    backgroundColor: "#3498db"
+  },
+  ReactGeneral: {
+    backgroundColor: "#f1c40f"
+  },
+  ReactEverywhere: {
+    backgroundColor: "#6DDB9C"
   }
 });
 
@@ -41,6 +61,11 @@ class Schedule extends React.Component {
     this.state = {
       day: 0
     };
+  }
+  _renderFilter() {
+    if (this.props.filter !== "All") {
+      return <Text style={[styles.filter, styles[this.props.filter.replace(/\s/g, "")]]}>FILTERED BY {this.props.filter.toUpperCase()}</Text>
+    }
   }
   _renderSchedule() {
     return <ScheduleList
@@ -61,7 +86,7 @@ class Schedule extends React.Component {
             onPress={this._setDay.bind(this, 0)}>
               <Text
                 style={[styles.dayText, this.state.day === 0 ? styles.selected : {}]}>
-                Tuesday
+                TUESDAY
               </Text>
           </TouchableHighlight>
           <TouchableHighlight
@@ -69,10 +94,11 @@ class Schedule extends React.Component {
             onPress={this._setDay.bind(this, 1)}>
               <Text
                 style={[styles.dayText, this.state.day === 1 ? styles.selected : {}]}>
-                Wednesday
+                WEDNESDAY
               </Text>
           </TouchableHighlight>
         </View>
+        {this._renderFilter()}
         {this._renderSchedule()}
       </View>
     );

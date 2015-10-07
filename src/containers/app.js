@@ -35,6 +35,7 @@ class App extends React.Component {
             this.setState({
               selectedTab: 'schedule',
             });
+            this.props.showFilter(true);
           }}>
           <Schedule {...this.props}/>
         </TabBarIOS.Item>
@@ -46,6 +47,7 @@ class App extends React.Component {
             this.setState({
               selectedTab: 'speakers',
             });
+            this.props.showFilter(false);
           }}>
           <Speakers {...this.props}/>
         </TabBarIOS.Item>

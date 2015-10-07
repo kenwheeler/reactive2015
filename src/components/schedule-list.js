@@ -23,9 +23,14 @@ class ScheduleList extends React.Component {
           flexDirection: "column"
         }}
       >
-        {this.props.schedule[this.props.day].slots.map((item) => {
-          return <ScheduleItem navigator={this.props.navigator} {...item}/>;
-        })}
+        {this.props.schedule[this.props.day].slots
+          .filter((item) => {
+            if (this.props.filter === "All") return true;
+            return item.category === this.props.filter;
+          })
+          .map((item, index) => {
+            return <ScheduleItem key={index} navigator={this.props.navigator} {...item}/>;
+          })}
       </ScrollView>
     );
   }

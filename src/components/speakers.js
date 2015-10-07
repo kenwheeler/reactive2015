@@ -14,21 +14,51 @@ let {
 } = React;
 
 class Speakers extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selected: 0
+    };
+  }
+  checkScroll(e) {
+    const selected = Math.floor(e.nativeEvent.contentOffset.y / (Dimensions.get('window').height - 65));
+    if (selected < 0 || selected > this.props.speakers.length) return;
+    if (selected !== this.state.selected) {
+      this.setState({
+        selected
+      });
+    }
+  }
   render() {
     return (
-      <ScrollView
-        style={{flex: 1}}
-        pagingEnabled={true}
-        contentContainerStyle={{
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "stretch"
-        }}
-      >
-        {this.props.speakers.map((speaker) => {
-          return <Speaker {...speaker}/>
-        })}
-      </ScrollView>
+      <View style={{flex: 1}}>
+        <ScrollView
+          style={{flex: 1}}
+          pagingEnabled={true}
+          onScroll={this.checkScroll.bind(this)}
+          scrollEventThrottle={32}
+          stickyHeaderIndices={[0]}
+          contentContainerStyle={{
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "stretch"
+          }}
+        >
+          <Text style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            backgroundColor: "#1bce7c",
+            textAlign: "center",
+            padding: 10,
+            fontWeight: "bold"
+          }}>{this.props.speakers[this.state.selected].name}</Text>
+          {this.props.speakers.map((speaker, index) => {
+            return <Speaker key={index} {...speaker}/>
+          })}
+        </ScrollView>
+      </View>
     );
   }
 }

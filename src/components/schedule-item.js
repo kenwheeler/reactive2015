@@ -103,7 +103,7 @@ class ScheduleItem extends React.Component {
     const categoryId = this.props.category ?
       this.props.category.replace(/\s/g, "") : null;
     return (
-      <View style={styles.item}>
+      <View style={[styles.item, this.props.style]}>
         <View style={styles.header}>
           <Text
             style={styles.time}>
