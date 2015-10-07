@@ -2,33 +2,31 @@
 /*eslint-disable prefer-const */
 
 import React from "react-native";
-import { connect } from "react-redux/native";
 
 import ScheduleItem from "./schedule-item";
 
 let {
   Text,
   View,
-  ScrollView
+  ScrollView,
+  TouchableHighlight
 } = React;
 
 class ScheduleList extends React.Component {
   render() {
     return (
-      <View style={{flex: 1}}>
-        <ScrollView
-          style={{flex: 1}}
-          contentContainerStyle={{
-            justifyContent: "center",
-            alignItems: "stretch",
-            flexDirection: "column"
-          }}
-        >
-          {this.props.schedule[this.props.day].slots.map((item) => {
-            return <ScheduleItem {...item}/>
-          })}
-        </ScrollView>
-      </View>
+      <ScrollView
+        style={{flex: 1}}
+        contentContainerStyle={{
+          justifyContent: "center",
+          alignItems: "stretch",
+          flexDirection: "column"
+        }}
+      >
+        {this.props.schedule[this.props.day].slots.map((item) => {
+          return <ScheduleItem navigator={this.props.navigator} {...item}/>;
+        })}
+      </ScrollView>
     );
   }
 }

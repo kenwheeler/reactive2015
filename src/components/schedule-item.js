@@ -2,13 +2,15 @@
 /*eslint-disable prefer-const */
 
 import React from "react-native";
-import { connect } from "react-redux/native";
+
+import TalkDetail from "./talk-detail";
 
 let {
   Image,
   Text,
   View,
-  StyleSheet
+  StyleSheet,
+  TouchableHighlight
 } = React;
 
 const styles = StyleSheet.create({
@@ -25,6 +27,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#efefef"
   },
   content: {
+    backgroundColor: "white",
     padding: 10,
     flex: 1,
     flexDirection: "row",
@@ -66,6 +69,10 @@ const styles = StyleSheet.create({
   company: {
     fontWeight: "normal"
   },
+  navigable: {
+    color: "#aaa",
+    fontSize: 20
+  },
   RethinkingRest: {
     color: "#9b59b6",
     borderColor: "#9b59b6"
@@ -85,6 +92,13 @@ const styles = StyleSheet.create({
 });
 
 class ScheduleItem extends React.Component {
+  _goToItem(item) {
+    this.props.navigator.push({
+      component: TalkDetail,
+      title: item.title.length > 25 ? item.title.substr(0,25) +"..." : item.title,
+      passProps: {...item}
+    });
+  }
   render() {
     const categoryId = this.props.category ?
       this.props.category.replace(/\s/g, "") : null;
@@ -100,26 +114,40 @@ class ScheduleItem extends React.Component {
             {this.props.category}
           </Text>
         </View>
-        <View style={styles.content}>
-          {this.props.photo && <Image
-            resizeMode="cover"
-            source={{uri: this.props.photo}}
-            style={[styles.image, categoryId ? styles[categoryId] : {}]}/>}
-          <View style={styles.description}>
-            <Text
-              style={[styles.title, this.props.talk ? {} : styles.gray]}>
-              {this.props.title}
-            </Text>
-            {this.props.speaker &&
-              <Text style={styles.speaker}>
-                {this.props.speaker}
-                {this.props.company &&
-                  <Text style={styles.company}>
-                    {" - "}{this.props.company}
+        {this.props.talk ?
+          <TouchableHighlight
+              onPress={this._goToItem.bind(this, this.props)}>
+            <View style={styles.content}>
+              {this.props.photo && <Image
+                resizeMode="cover"
+                source={{uri: this.props.photo}}
+                style={[styles.image, categoryId ? styles[categoryId] : {}]}/>}
+              <View style={styles.description}>
+                <Text
+                  style={[styles.title, this.props.talk ? {} : styles.gray]}>
+                  {this.props.title}
+                </Text>
+                {this.props.speaker &&
+                  <Text style={styles.speaker}>
+                    {this.props.speaker}
+                    {this.props.company &&
+                      <Text style={styles.company}>
+                        {" - "}{this.props.company}
+                      </Text>}
                   </Text>}
-              </Text>}
+              </View>
+              <Text style={styles.navigable}>›</Text>
+            </View>
+          </TouchableHighlight> :
+          <View style={styles.content}>
+            <View style={styles.description}>
+              <Text
+                style={[styles.title, this.props.talk ? {} : styles.gray]}>
+                {this.props.title}
+              </Text>
+            </View>
           </View>
-        </View>
+        }
       </View>
     );
   }

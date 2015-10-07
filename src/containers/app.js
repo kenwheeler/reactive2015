@@ -36,7 +36,7 @@ class App extends React.Component {
               selectedTab: 'schedule',
             });
           }}>
-          <Schedule/>
+          <Schedule {...this.props}/>
         </TabBarIOS.Item>
         <TabBarIOS.Item
           title="Speakers"
@@ -47,7 +47,7 @@ class App extends React.Component {
               selectedTab: 'speakers',
             });
           }}>
-          <Speakers/>
+          <Speakers {...this.props}/>
         </TabBarIOS.Item>
       </TabBarIOS>
     );

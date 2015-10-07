@@ -18,14 +18,9 @@ class Scene extends React.Component {
       <View style={{flex: 1}}>
         <NavigationBar
           backgroundStyle={{backgroundColor: "#0f1726"}}
-          customTitle={
-            <Image
-              resizeMode="contain"
-              style={{
-                width: 100
-              }}
-              source={require('image!logo')}/>
-          }
+          buttonsColor="#1bce7c"
+          customTitle={route.customTitle}
+          hidePrev={route.component === App}
           navigator={navigator}
           route={route}
           statusBar="lightContent"
@@ -44,10 +39,17 @@ class Scene extends React.Component {
     return (
       <Navigator
         style={{flex: 1}}
+        configureScene={(route) => Navigator.SceneConfigs.HorizontalSwipeJump}
         renderScene={this.renderScene}
         initialRoute={{
           component: App,
-          title: "Starter App"
+          title: "Starter App",
+          customTitle: (<Image
+              resizeMode="contain"
+              style={{
+                width: 100
+              }}
+              source={require('image!logo')}/>)
         }}
       />
     );

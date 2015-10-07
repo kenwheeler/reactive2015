@@ -2,7 +2,6 @@
 /*eslint-disable prefer-const */
 
 import React from "react-native";
-import { connect } from "react-redux/native";
 
 let {
   Image,
