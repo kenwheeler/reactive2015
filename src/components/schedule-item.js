@@ -1,0 +1,139 @@
+/* @flow */
+/*eslint-disable prefer-const */
+
+import React from "react-native";
+import { connect } from "react-redux/native";
+
+let {
+  Image,
+  Text,
+  View,
+  StyleSheet
+} = React;
+
+const styles = StyleSheet.create({
+  item: {
+    flex: 1,
+    borderTopWidth: 1,
+    borderTopColor: "#ddd"
+  },
+  header: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 10,
+    backgroundColor: "#efefef"
+  },
+  content: {
+    padding: 10,
+    flex: 1,
+    flexDirection: "row",
+    alignItems: 'center'
+  },
+  description: {
+    flex: 1
+  },
+  time: {
+    flex: 0,
+    color: "#16a764",
+    fontWeight: "bold",
+    alignSelf: 'flex-start'
+  },
+  category: {
+    flex: 0,
+    fontWeight: "bold",
+    position: "absolute",
+    right: 10
+  },
+  image: {
+    flex: 0,
+    borderWidth: 2,
+    borderRadius: 25,
+    borderColor: "#ddd",
+    height: 50,
+    width: 50,
+    marginRight: 10
+  },
+  gray: {
+    color: "#888"
+  },
+  speaker: {
+    fontSize: 12,
+    fontWeight: "bold",
+    marginTop: 2,
+    color: "#0f1726"
+  },
+  company: {
+    fontWeight: "normal"
+  },
+  RethinkingRest: {
+    color: "#9b59b6",
+    borderColor: "#9b59b6"
+  },
+  DataFlow: {
+    color: "#3498db",
+    borderColor: "#3498db"
+  },
+  ReactGeneral: {
+    color: "#f1c40f",
+    borderColor: "#f1c40f"
+  },
+  ReactEverywhere: {
+    color: "#6DDB9C",
+    borderColor: "#6DDB9C"
+  }
+});
+
+class ScheduleItem extends React.Component {
+  render() {
+    const categoryId = this.props.category ?
+      this.props.category.replace(/\s/g, "") : null;
+    return (
+      <View style={styles.item}>
+        <View style={styles.header}>
+          <Text
+            style={styles.time}>
+            {this.props.time}
+          </Text>
+          <Text
+            style={[styles.category,categoryId ? styles[categoryId] : {}]}>
+            {this.props.category}
+          </Text>
+        </View>
+        <View style={styles.content}>
+          {this.props.photo && <Image
+            resizeMode="cover"
+            source={{uri: this.props.photo}}
+            style={[styles.image, categoryId ? styles[categoryId] : {}]}/>}
+          <View style={styles.description}>
+            <Text
+              style={[styles.title, this.props.talk ? {} : styles.gray]}>
+              {this.props.title}
+            </Text>
+            {this.props.speaker &&
+              <Text style={styles.speaker}>
+                {this.props.speaker}
+                {this.props.company &&
+                  <Text style={styles.company}>
+                    {" - "}{this.props.company}
+                  </Text>}
+              </Text>}
+          </View>
+        </View>
+      </View>
+    );
+  }
+}
+
+ScheduleItem.propTypes = {
+  category: React.PropTypes.string,
+  company: React.PropTypes.string,
+  speaker: React.PropTypes.string,
+  photo: React.PropTypes.string,
+  summary: React.PropTypes.string,
+  talk: React.PropTypes.bool,
+  time: React.PropTypes.string,
+  title: React.PropTypes.string
+};
+
+export default ScheduleItem;
