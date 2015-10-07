@@ -1,5 +1,7 @@
 ##reactive-2015
 
+![preview](http://i.imgur.com/ejurKHZ.gif)
+
 #### Getting Started
 
 - Make sure XCode is installed.
