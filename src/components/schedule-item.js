@@ -74,19 +74,27 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   RethinkingRest: {
-    color: "#9b59b6",
+    color: "#9b59b6"
+  },
+  RethinkingRestImage: {
     borderColor: "#9b59b6"
   },
   DataFlow: {
-    color: "#3498db",
+    color: "#3498db"
+  },
+  DataFlowImage: {
     borderColor: "#3498db"
   },
   ReactGeneral: {
-    color: "#f1c40f",
+    color: "#f1c40f"
+  },
+  ReactGeneralImage: {
     borderColor: "#f1c40f"
   },
   ReactEverywhere: {
-    color: "#6DDB9C",
+    color: "#6DDB9C"
+  },
+  ReactEverywhereImage: {
     borderColor: "#6DDB9C"
   }
 });
@@ -121,7 +129,7 @@ class ScheduleItem extends React.Component {
               {this.props.photo && <Image
                 resizeMode="cover"
                 source={{uri: this.props.photo}}
-                style={[styles.image, categoryId ? styles[categoryId] : {}]}/>}
+                style={[styles.image, categoryId ? styles[categoryId + "Image"] : {}]}/>}
               <View style={styles.description}>
                 <Text
                   style={[styles.title, this.props.talk ? {} : styles.gray]}>

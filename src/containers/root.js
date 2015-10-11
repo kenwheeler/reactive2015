@@ -7,7 +7,7 @@ import Scene from "../components/scene";
 
 import data from "../data";
 
-const store = configureStore({data: data});
+const store = configureStore({data: Object.assign({tweets: [], loading: false},data)});
 
 class Root extends React.Component {
   render() {

@@ -8,7 +8,8 @@
  */
 
 #import "AppDelegate.h"
-
+#import <Fabric/Fabric.h>
+#import <TwitterKit/TwitterKit.h>
 #import "RCTRootView.h"
 
 @implementation AppDelegate
@@ -50,11 +51,14 @@
                                                initialProperties:nil
                                                    launchOptions:launchOptions];
 
+  [[Twitter sharedInstance] startWithConsumerKey:@"REDACTED" consumerSecret:@"REDACTED"];
+  [Fabric with:@[[Twitter sharedInstance]]];
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [[UIViewController alloc] init];
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+
   return YES;
 }
 
