@@ -1,6 +1,16 @@
 ##reactive-2015
 
-![preview](http://i.imgur.com/ejurKHZ.gif)
+###Schedule
+![schedule](http://i.imgur.com/yI6Scix.gif)
+
+###Speakers
+![speakers](http://i.imgur.com/PnDsUDy.gif)
+
+###Map
+![speakers](http://i.imgur.com/iZmGcWU.gif)
+
+###Social
+![social](http://i.imgur.com/tC8AjT3.gif)
 
 #### Getting Started
 
@@ -11,6 +21,10 @@
 - Clone this repo and then run `npm install`
 
 - Open XCode and open `/ios/App.xcodeproj`
+
+####Keys
+
+You need to add Twitter API keys in `AppDelegate.m` and a MapBox token in `src/components/map.js`
 
 #### Running IOS
 
